@@ -39,9 +39,19 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
-
 const server = http.createServer(app)
 const io = socket(server)
+
+// socket define
+io.on('connection', (socket) => {
+  console.log(`a user connection`)
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg)
+  })
+  socket.on('disconnect', () => {
+    console.log(`user disconnected`)
+  })
+})
 
 // run server
 server.listen(process.env.PORT || '3000', function() {
