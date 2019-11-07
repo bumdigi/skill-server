@@ -3,8 +3,12 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='lib/codemirror.css')
     script(src='https://code.jquery.com/jquery-1.11.1.js')
     script(src='/socket.io/socket.io.js')
-    script(src='./public/javascripts/clientSocket.js')
+    script(src='lib/codemirror.js')
+    script(src='mode/javascript/javascript.js')
+    script(src='./javascripts/clientSocket.js')
+    script(src='./javascripts/codeEditor.js')
   body
     block content

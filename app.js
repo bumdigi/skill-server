@@ -39,6 +39,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
 const server = http.createServer(app)
 const io = socket(server)
 
@@ -46,6 +47,7 @@ const io = socket(server)
 io.on('connection', (socket) => {
   console.log(`a user connection`)
   socket.on('chat message', (msg) => {
+    console.log(msg)
     io.emit('chat message', msg)
   })
   socket.on('disconnect', () => {
