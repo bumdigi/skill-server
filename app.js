@@ -45,23 +45,11 @@ app.use(function(err, req, res, next) {
 })
 
 const server = http.createServer(app)
-const io = socket(server)
 
-// socket define
-io.on('connection', (socket) => {
-  console.log(`a user connection`)
-  socket.on('chat message', (msg) => {
-    console.log(msg)
-    io.emit('chat message', msg)
-  })
-  socket.on('disconnect', () => {
-    console.log(`user disconnected`)
-  })
-})
-
-// run server
-server.listen('3000', function() {
-	console.log("server listen 3000...")
+// Listen to the App Engine-specified port, or 8080 otherwise
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}...`);
 })
 
 module.exports = app
